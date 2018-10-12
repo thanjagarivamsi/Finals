@@ -210,34 +210,6 @@ echo " "
 timestamp >>rescve.log
 echo "$rescve" >>rescve.log
 echo " "
-
-#<!------NIKTO Starts Here------!>
-
-#locating the nikto package installed or not.
-dpkg -l | grep nikto >/dev/null 
-
-#return code of the last executed command.
-opt=`echo $?`
-
-#return code is 0 means nikto package is installed.
-if [ "$opt" = "0" ]; then
- {
-  echo " "
- }
-
-#return code is 1 package is not installed and installing the nikto package.
-elif [ "$opt" = "1" ]; then 
- {
-  sudo apt-get install nikto
- }
-fi
-/bin/echo -e "\e[1;33m##################***********Vulnerability Checker**********########################\e[0m"
-echo " "
-res=`nikto -host $ip | grep 'Nikto'`
-/bin/echo -e "\e[1;32m$res\e[0m"
-timestamp >>vuln.log
-echo "$res" >>vuln.log
-echo " " 
 /bin/echo "\e[1;32m======================!!!!!!!!!!!!!!!!!Scan Completed!!!!!!!!!!!!!!!!=======================\e[0m"
 
 
